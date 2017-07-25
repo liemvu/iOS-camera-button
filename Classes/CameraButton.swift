@@ -10,6 +10,10 @@ import UIKit
 
 @IBDesignable
 class CameraButton: UIButton {
+    
+    internal let width: CGFloat = 66;
+    internal let height: CGFloat = 66;
+    
     //create a new layer to render the various circles
     var pathLayer:CAShapeLayer!
     let animationDuration = 0.4
@@ -57,14 +61,14 @@ class CameraButton: UIButton {
                                               toItem:nil,
                                               attribute:.width,
                                               multiplier:1,
-                                              constant:66.0))
+                                              constant:width))
         self.addConstraint(NSLayoutConstraint(item: self,
                                               attribute:.height,
                                               relatedBy:.equal,
                                               toItem:nil,
                                               attribute:.width,
                                               multiplier:1,
-                                              constant:66.0))
+                                              constant:height))
         
         //clear the title
         self.setTitle("", for:UIControlState.normal)
@@ -74,6 +78,9 @@ class CameraButton: UIButton {
         self.addTarget(self, action: #selector(touchDown), for: UIControlEvents.touchDown)
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: width, height: height);
+    }
     
     override func prepareForInterfaceBuilder()
     {
